@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('promotions', function (Blueprint $table) {
             $table->id();
-            $table->string('    ');
-            $table->string('description');
+            $table->string('name', 80);
+            $table->text('description');
             $table->string('image');
             $table->date('ends');
 
