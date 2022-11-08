@@ -53,8 +53,9 @@ class CookwhithusController extends Controller
 
     public function show($id)
     {
+        $cook = Cookwithus::find($id);
         return response()->json([
-            Cookwithus::find($id),
+            'data' => $cook
         ],202);
     }
 

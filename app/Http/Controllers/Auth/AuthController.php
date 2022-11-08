@@ -56,6 +56,4 @@ class AuthController extends Controller
             "message" => 'Token eliminado correctamente',
         ], 410);
     }
-
-
 }

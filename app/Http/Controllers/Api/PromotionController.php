@@ -6,39 +6,49 @@ use App\Http\Controllers\Controller;
 use App\Models\Promotion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Auth\Events\Validated;
+use Illuminate\Support\Facades\Validator;
 
 class PromotionController extends Controller
 {
     
     public function index()
     {
+        $data = Promotion::all();
         return response()->json([
-            Promotion::all(),
+            'sucess' => 'Listado Registros',
+            'data' => $data
         ],200);
     }
 
     
     public function store(Request $request)
     {
-        // $request->validate([
-        //     //'title' => 'required',
-        //     'image' => 'required',
-        //     'ends' => 'required'
-        // ]);
+        $validator = Validator::make($request->all(),[
+            'name' => 'required',
+        ]);
 
+        if (!$validator->fails()) {
+            $add = new Promotion();
+            $add->name = $request->name;
+            $add->description = $request ->description;
+            $file = $request->file('image')->store('public/promotion');
+            $add->image = $file;
+            $add->ends = $request ->ends;
+            $add->save();
 
-        $add = new Promotion($request->all());
-        $file =$request->image->store("public/images");
+            return response()->json([
+                'message' =>  'oK',
+                'info' =>  'Nuevo Registro!!',
+                'data'=> $add,
+            ], 201);
+        }
 
-        $add->image = $file;
-        $add->save();
+        // $add = new Promotion($request->all());
+        // $file =$request->image->store("public/images");
 
-        return response()->json([
-            'message' =>  'oK',
-            'info' =>  'El registro fue satisfactorio',
-            'data'=> $add,
-        ], 201);
+        // $add->image = $file;
+        // $add->save();
+
     }
 
     
@@ -54,6 +64,7 @@ class PromotionController extends Controller
     {
         $record = Promotion::find($id);
         $record->update($request->all());
+        $record->save();
         return response()->json([
             'message' => 204,
             'info' => 'Actualizacion exitosa',

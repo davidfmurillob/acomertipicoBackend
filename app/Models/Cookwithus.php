@@ -9,6 +9,8 @@ class Cookwithus extends Model
 {
     use HasFactory;
 
+    protected $table = 'cookwithuses';
+
     protected $fillable = [
         'mensaje', 'contacto', 'id_user', 'id_product',  'establishment_id'
     ];

@@ -35,11 +35,11 @@ Route::apiResource('orders', OrderController::class);
 //ruta categoria
 Route::apiResource('category', CategoryController::class);
 //ruta Recetas
-Route::apiResource('foodrecipe', FoodRecipeController::class);
+Route::apiResource('recipe', FoodRecipeController::class);
 //ruta Cocina Con Nosotros
 Route::apiResource('cooking', CookwhithusController::class);
 //ruta Anuncio
-Route::apiResource('promotions', PromotionController::class);
+Route::apiResource('promotion', PromotionController::class);
 
 /**************************************Autenticacion**************************************/ 
 //registro
