@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('cookwithuses', function (Blueprint $table) {
             $table->id();
-            $table->String('email');
+            $table->String('email', 60);
             $table->String('telephone',12);
             /******************Relacion tabla producto******************/
             $table->unsignedBigInteger('id_product');

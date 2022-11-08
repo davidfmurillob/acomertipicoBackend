@@ -15,13 +15,12 @@ return new class extends Migration
     {
         Schema::create('food_recipes', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name', 40 );
             $table->string('time',10);
             $table->text('elaboration');
             $table->string('type',45);
-            $table->string('person');
             $table->string('image');
-            $table->string('video_link');
+            $table->string('video_link', 200);
             $table->timestamps();
         });
     }

@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre_producto');
-            $table->string('descripcion_producto');
+            $table->string('nombre_producto', 60);
+            $table->text('descripcion_producto');
            
-            $table->string('precio_producto');
+            $table->double('precio_producto');
             /***********************relaciones***********************/
             //establecimientos
             $table->unsignedBigInteger('establishment_id');
