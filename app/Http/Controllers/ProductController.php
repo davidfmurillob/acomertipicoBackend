@@ -71,7 +71,21 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $products = Product::find($id);
+        $products->nombre_producto = $request ->nombre_producto;
+        $products->descripcion_producto = $request ->descripcion_producto;
+        $products->precio_producto = $request ->precio_producto;
+        $products->establishment_id = $request ->establishment_id;
+        $products->category_id = $request ->category_id;
+
+        $products->save();
+
+        return response()->json([
+
+            'message' => 'Success',
+            'info' => 'Registro Exitoso',
+            'products' => $products,
+        ], 200);
     }
 
     /**
@@ -82,6 +96,12 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $products = Product::findOrfail($id);
+        $products->delete();
+
+        return response()->json([
+            'message' => 204,
+            'info' => 'Registro Eliminado',
+        ]);
     }
 }

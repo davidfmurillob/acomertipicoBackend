@@ -15,7 +15,14 @@ class CategoryController extends Controller
      */
     public function index()
     {
-       
+        $category = Category::all();
+
+        return response()->json([
+
+            'message' => 'success',
+            'info' => 'Listado de Categorias',
+            'establishment' => $category,
+        ], 200);
     }
 
     /**
@@ -56,7 +63,14 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $category = Category::find();
+        $category->nombre_categoria = $request->nombre_categoria;
+        $category->save();
+
+        return response()->json([
+            "message" => "Categoria creada con exito",
+            "category" => $category,
+        ], 201);
     }
 
     /**
@@ -67,6 +81,12 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::findOrfail($id);
+        $category->delete();
+
+        return response()->json([
+            'message' => 204,
+            'info' => 'Registro Eliminado',
+        ]);
     }
 }

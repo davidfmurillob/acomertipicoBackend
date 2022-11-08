@@ -108,6 +108,12 @@ class EstablishmentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $record = Establishment::findOrfail($id);
+        $record->delete();
+
+        return response()->json([
+            'message' => 204,
+            'info' => 'Registro Eliminado',
+        ]);
     }
 }
