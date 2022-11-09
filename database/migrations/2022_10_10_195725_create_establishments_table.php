@@ -16,8 +16,11 @@ return new class extends Migration
         Schema::create('establishments', function (Blueprint $table) {
             $table->id();
             $table->string('nombre_establecimiento', 80);
+            $table->text('descripcion');
             $table->string('direccion_establecimiento', 120);
             $table->string('telefono_establecimiento', 20);
+            $table->string('imagen');
+            $table->text('ubicacion');
             $table->timestamps();
         });
     }

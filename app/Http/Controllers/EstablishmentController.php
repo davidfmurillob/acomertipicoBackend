@@ -38,8 +38,13 @@ class EstablishmentController extends Controller
         $establishment->nombre_establecimiento = $request -> nombre_establecimiento;
         $establishment->direccion_establecimiento = $request -> direccion_establecimiento;
         $establishment->telefono_establecimiento = $request->telefono_establecimiento;
-        //descripcion, foto 
+        $establishment->descripcion = $request->descripcion;
+        
+        $file = $request->file('imagen')->store('public/Establecimiento');
+        $establishment->imagen = $file;
 
+        $establishment->ubicacion =$request->ubicacion;
+        
         $establishment->save();
 
         return response()->json([
@@ -87,6 +92,9 @@ class EstablishmentController extends Controller
         $establishment->nombre_establecimiento = $request ->nombre_establecimiento;
         $establishment->direccion_establecimiento = $request -> direccion_establecimiento;
         $establishment->telefono_establecimiento = $request->telefono_establecimiento;
+        $establishment->descripcion = $request->descripcion;
+        $file = $request->file('imagen')->store('public/Establecimiento');
+        $establishment->imagen = $file;
 
         $establishment->save();
 
@@ -97,7 +105,6 @@ class EstablishmentController extends Controller
             'establishment' => $establishment,
         ], 201);
 
-       
     }
 
     /**
