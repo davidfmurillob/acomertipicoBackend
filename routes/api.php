@@ -30,8 +30,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResource('establishment', EstablishmentController::class);
 //ruta productos
 Route::apiResource('products', ProductController::class);
-//ruta orden 
-Route::apiResource('orders', OrderController::class);
 //ruta categoria
 Route::apiResource('category', CategoryController::class);
 //ruta Recetas
@@ -48,3 +46,13 @@ Route::post('auth/register', [AuthController::class, 'register'])->name('auth/re
 Route::post('auth/login', [AuthController::class, 'login'])->name('auth/login');
 //logout
 Route::post('auth/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
+/************************************Carrito de compras***********************************/ 
+//Agregar productos al carrito
+Route::post('add-to-cart', [OrderController::class, 'addtocart']);
+//
+Route::post('cart', [OrderController::class, 'viewcart']);
+//increment and decrement price of products
+Route::put('cart-updatequanty/{card_id}/{scope}', [OrderController::class, 'updatequanty']);
+//Delete cartitem
+Route::delete('delete-cartitem/{cart_id}', [OrderController::class, 'deleteCartitem']);
+
