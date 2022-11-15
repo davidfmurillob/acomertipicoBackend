@@ -33,7 +33,7 @@ class FoodRecipeController extends Controller
             $foodRecipe = new FoodRecipe();
             $foodRecipe->name = $request->name;
             $foodRecipe->description = $request->description;
-            /* Linea de codigo permite alacenar archivos en la carpeta public */
+            /* Linea de codigo permite almacenar archivos en la carpeta public */
             $images = $request->file('image');
             $imageName = ' ';
             foreach ($images as $image) {
@@ -71,23 +71,31 @@ class FoodRecipeController extends Controller
 
     public function update(Request $request, $id)
     {
-        $record = FoodRecipe::findorfail($id);
-        $record->update($request->all());
-
-        $images = $request->file('image');
+        $record = FoodRecipe::find0rFail($request->id);
+            $record->name = $request->name;
+            $record->description = $request->description;
+            /* Linea de codigo permite alacenar archivos en la carpeta public */
+            $images = $request->file('image');
             $imageName = ' ';
             foreach ($images as $image) {
                 $new_name = rand().'.'.$image->getClientOriginalName();
-                $image->move(public_path('/uploads/images'),$new_name);
+                $image->move(storage_path('app/public/recipe'),$new_name);
                 $imageName = $imageName.$new_name.", ";
             }
-        $imagedb = $imageName;
-        $record->image =$imagedb;
-        $foodRecipe->save();
+            $imagedb = $imageName;
+            // return response()->json($imagedb);
+            /* Agrega 1 imagen y/o archivo al la ruta Storage/app/public 
+            *   ejecutar comando[] php artisan storage:link  
+            *   $file = $request->file('image')->store('public/recipes');
+            *
+            */
+            $record->image = $imagedb;
+            $record->link =$request->link;
+            $record->save();
 
         return response()->json([
             'sucess' => 'Acualizado Satisfactorio',
-            'data' => $foodRecipe
+            'data' => $record
         ]);
     }
 

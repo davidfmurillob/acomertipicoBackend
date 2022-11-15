@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('nombre_producto', 60);
             $table->text('descripcion_producto');
-           
             $table->double('precio_producto');
+            $table->string('imagen_producto');
             /***********************relaciones***********************/
             //establecimientos
             $table->unsignedBigInteger('establishment_id');

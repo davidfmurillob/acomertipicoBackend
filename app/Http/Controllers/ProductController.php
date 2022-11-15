@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Contracts\Cache\Store;
 
 class ProductController extends Controller
 {
@@ -41,6 +44,18 @@ class ProductController extends Controller
         $products->establishment_id = $request ->establishment_id;
         $products->category_id = $request ->category_id;
 
+        /* Agregar imagen al producto */
+
+        $files = $request->file('imagen_producto');
+        $fileName = " ";
+        foreach ($files as $file) {
+            $new_name = rand().'.'.$file->getClientOriginalName();
+            $file->move(storage_path('app/public/products'),$new_name);
+            $fileName = $fileName.$new_name.", ";
+        }
+        // return response()->json($fileName);
+
+        $products->imagen_producto = $fileName;
         $products->save();
 
         return response()->json([
@@ -78,6 +93,18 @@ class ProductController extends Controller
         $products->establishment_id = $request ->establishment_id;
         $products->category_id = $request ->category_id;
 
+         /* Agregar imagenes al producto */
+
+        $files = $request->file('imagen_producto');
+        $fileName = " ";
+        foreach ($files as $file) {
+            $new_name = rand().'.'.$file->getClientOriginalName();
+            $file->move(storage_path('app/public/products'),$new_name);
+            $fileName = $fileName.$new_name.", ";
+        }
+        // return response()->json($fileName);
+
+        $products->imagen_producto = $fileName;
         $products->save();
 
         return response()->json([

@@ -11,6 +11,6 @@ class FoodRecipe extends Model
 
     protected $fillable = 
     [
-        'name', 'time', 'elaboration', 'type', 'person', 'image', 'video_link'
+        'name', 'time', 'elaboration', 'type', 'person', 'image', 'link'
     ];
 }

@@ -54,8 +54,9 @@ class PromotionController extends Controller
     
     public function show($id)
     {
+        $query =Promotion::find($id);
         return response()->json([
-            Promotion::find($id),
+            data => $query
         ],202);
     }
 
@@ -63,7 +64,11 @@ class PromotionController extends Controller
     public function update(Request $request, $id)
     {
         $record = Promotion::find($id);
-        $record->update($request->all());
+        $record->name = $request->name;
+        $record->description = $request ->description;
+        $record->image = $file;
+        $file = $request->file('image')->store('public/promotion');
+        $record->ends = $request ->ends;
         $record->save();
         return response()->json([
             'message' => 204,
