@@ -51,6 +51,7 @@ class AuthController extends Controller
             'name' => $request->name,
             'status'=>200,
             "success" => true,
+            "message" => 'Inicio de sesión exitoso',
             "token" => $request->user()->createToken($request->email)->plainTextToken,
         ], 200);
     }
@@ -60,7 +61,7 @@ class AuthController extends Controller
         $request->user()->currentAccessToken()->delete();
         return response()->json([
             'status'=>200,
-            "message" => 'Token eliminado correctamente',
+            "message" => 'Has cerrado sesión',
         ], 410);
     }
 }
