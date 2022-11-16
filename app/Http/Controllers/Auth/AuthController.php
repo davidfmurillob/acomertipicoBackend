@@ -23,6 +23,8 @@ class AuthController extends Controller
         $user->save();
         if(Auth::attempt($request->only('email', 'password'))){
             return response()->json([
+                'status'=>200,
+                'username'=>$user->name,
                 "message" => "usuario creado",
                 "token" =>$request->user()->createToken($request->email)->plainTextToken,
             ]);
@@ -34,6 +36,7 @@ class AuthController extends Controller
 
         if(!Auth::attempt($request->only('email', 'password'))){
             return response()->json([
+                //Reparar esta sección
                 "message" => "Datos incorrectos",
                 "success" => false
             ],200 );
@@ -45,6 +48,8 @@ class AuthController extends Controller
         }
 
         return response()->json([
+            'status'=>200,
+            'username'=>$user->name,
             "success" => true,
             "token" => $request->user()->createToken($request->email)->plainTextToken,
         ], 200);
@@ -54,6 +59,7 @@ class AuthController extends Controller
     public function logout(Request $request){
         $request->user()->currentAccessToken()->delete();
         return response()->json([
+            'status'=>200,
             "message" => 'Token eliminado correctamente',
         ], 410);
     }
