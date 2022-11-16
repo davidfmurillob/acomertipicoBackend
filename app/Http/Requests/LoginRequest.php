@@ -25,8 +25,10 @@ class LoginRequest extends FormRequest
     {
         //reglas de validacion
         return [
+            
             'email' => 'required|email',
             'password' => 'required|min:6'
         ];
     }
+
 }

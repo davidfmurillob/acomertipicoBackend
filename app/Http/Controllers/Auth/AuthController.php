@@ -32,7 +32,7 @@ class AuthController extends Controller
     }
 
     //login de usuarios
-    public function login(LoginRequest $request){
+    public function login(LoginRequest  $request){
 
         if(!Auth::attempt($request->only('email', 'password'))){
             return response()->json([
@@ -47,9 +47,9 @@ class AuthController extends Controller
             $userToken->delete();
         }
 
-        return response()->json([
+        return response()->json([   
+            'name' => $request->name,
             'status'=>200,
-            'username'=>$user->name,
             "success" => true,
             "token" => $request->user()->createToken($request->email)->plainTextToken,
         ], 200);
