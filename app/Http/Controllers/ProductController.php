@@ -42,24 +42,28 @@ class ProductController extends Controller
         $products->descripcion_producto = $request ->descripcion_producto;
         $products->precio_producto = $request ->precio_producto;
         $products->establishment_id = $request ->establishment_id;
-        $products->category_id = $request ->category_id;
+        // $products->category_id = $request ->category_id;
 
-        /* Agregar imagen al producto */
+        // /* Agregar imagen al producto */
 
-        $files = $request->file('imagen_producto');
-        $fileName = " ";
-        foreach ($files as $file) {
-            $new_name = rand().'.'.$file->getClientOriginalName();
-            $file->move(storage_path('app/public/products'),$new_name);
-            $fileName = $fileName.$new_name.", ";
-        }
-        // return response()->json($fileName);
+        // $files = $request->file('imagen_producto');
+        // $fileName = " ";
+        // foreach ($files as $file) {
+        //     $new_name = rand().'.'.$file->getClientOriginalName();
+        //     $file->move(storage_path('app/public/products'),$new_name);
+        //     $fileName = $fileName.$new_name.", ";
+        // }
+        // // return response()->json($fileName);
 
-        $products->imagen_producto = $fileName;
-        $products->save();
+        // $products->imagen_producto = $fileName;
+        // $products->save();
+
+         //imagen puesta por david
+        $file = $request->file('imagen')->store('public/Establecimiento');
+        $products->imagen = $file;
 
         return response()->json([
-
+            'status' => 200,
             'message' => 'Success',
             'info' => 'Registro Exitoso',
             'products' => $products,
@@ -91,7 +95,7 @@ class ProductController extends Controller
         $products->descripcion_producto = $request ->descripcion_producto;
         $products->precio_producto = $request ->precio_producto;
         $products->establishment_id = $request ->establishment_id;
-        $products->category_id = $request ->category_id;
+        // $products->category_id = $request ->category_id;
 
          /* Agregar imagenes al producto */
 
@@ -108,7 +112,7 @@ class ProductController extends Controller
         $products->save();
 
         return response()->json([
-
+            'status' => 200,
             'message' => 'Success',
             'info' => 'Registro Exitoso',
             'products' => $products,
