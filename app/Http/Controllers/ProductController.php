@@ -42,8 +42,9 @@ class ProductController extends Controller
         $products->descripcion_producto = $request ->descripcion_producto;
         $products->precio_producto = $request ->precio_producto;
         $products->establishment_id = $request ->establishment_id;
-        // $products->category_id = $request ->category_id;
+        $products->category_id = $request ->category_id;
 
+        // 
         // /* Agregar imagen al producto */
 
         // $files = $request->file('imagen_producto');
@@ -58,8 +59,8 @@ class ProductController extends Controller
         // $products->imagen_producto = $fileName;
         
         //imagen puesta por david
-        $file = $request->file('imagen')->store('public/Productos');
-        $products->imagen = $file;
+        $file = $request->file('imagen_producto')->store('public/Productos');
+        $products->imagen_producto = $file;
         //revisar el products save
         $products->save();
 

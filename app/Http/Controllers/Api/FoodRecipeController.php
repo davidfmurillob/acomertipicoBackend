@@ -28,7 +28,7 @@ class FoodRecipeController extends Controller
             'description' => 'required',
 
             //verificar esta linea antes era image
-            'imagen' => 'required',
+            'image' => 'required',
         ]);
 
         if (!$validator->fails()) {
@@ -52,10 +52,10 @@ class FoodRecipeController extends Controller
             // */
             // $foodRecipe->image = $imagedb;
             // //link de receta
-            // $foodRecipe->link =$request->link;
+            $foodRecipe->link =$request->link;
 
-            $file = $request->file('imagen')->store('public/Recetas');
-            $foodRecipe->imagen = $file;
+            $file = $request->file('image')->store('public/Recetas');
+            $foodRecipe->image = $file;
 
 
             $foodRecipe->save();

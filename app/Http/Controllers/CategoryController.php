@@ -21,7 +21,7 @@ class CategoryController extends Controller
 
             'message' => 'success',
             'info' => 'Listado de Categorias',
-            'establishment' => $category,
+            'category' => $category,
         ], 200);
     }
 
@@ -68,6 +68,7 @@ class CategoryController extends Controller
         $category->save();
 
         return response()->json([
+            'status' => 200,
             "message" => "Categoria creada con exito",
             "category" => $category,
         ], 201);
