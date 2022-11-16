@@ -48,7 +48,8 @@ class EstablishmentController extends Controller
         $establishment->save();
 
         return response()->json([
-
+            //linea MUY NECESARIA en todos los crud agregada por david 
+            'status' => 200,
             'message' => 'Registro exitoso',
             'info' => 'todo bien hasta el momento',
             'establishment' => $establishment,
