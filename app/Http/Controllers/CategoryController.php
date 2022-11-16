@@ -21,7 +21,7 @@ class CategoryController extends Controller
 
             'message' => 'success',
             'info' => 'Listado de Categorias',
-            'establishment' => $category,
+            'categories' => $category,
         ], 200);
     }
 
