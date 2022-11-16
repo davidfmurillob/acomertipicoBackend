@@ -56,15 +56,16 @@ class ProductController extends Controller
         // // return response()->json($fileName);
 
         // $products->imagen_producto = $fileName;
-        // $products->save();
-
-         //imagen puesta por david
-        $file = $request->file('imagen')->store('public/Establecimiento');
+        
+        //imagen puesta por david
+        $file = $request->file('imagen')->store('public/Productos');
         $products->imagen = $file;
+        //revisar el products save
+        $products->save();
 
         return response()->json([
             'status' => 200,
-            'message' => 'Success',
+            'message' => 'Producto registrado',
             'info' => 'Registro Exitoso',
             'products' => $products,
         ], 200);
