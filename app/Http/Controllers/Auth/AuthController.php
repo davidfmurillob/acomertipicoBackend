@@ -20,6 +20,7 @@ class AuthController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
+        $user->rol_id = $request->rol_id;
         $user->save();
         if(Auth::attempt($request->only('email', 'password'))){
             return response()->json([

@@ -102,7 +102,7 @@ class ProductController extends Controller
         $products->category_id = $request ->category_id;
         $products->establishment_name = $request ->establishment_name;
         $products->category_name = $request ->category_name;
-        // $products->category_id = $request ->category_id;
+         $products->category_id = $request ->category_id;
 
          /* Agregar imagenes al producto */
 

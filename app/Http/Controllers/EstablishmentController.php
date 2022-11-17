@@ -41,6 +41,7 @@ class EstablishmentController extends Controller
         $establishment->descripcion = $request->descripcion;
         
         $file = $request->file('imagen')->store('public/Establecimiento');
+    
         $establishment->imagen = $file;
 
         $establishment->ubicacion =$request->ubicacion;
