@@ -43,6 +43,8 @@ class ProductController extends Controller
         $products->precio_producto = $request ->precio_producto;
         $products->establishment_id = $request ->establishment_id;
         $products->category_id = $request ->category_id;
+        $products->establishment_name = $request ->establishment_name;
+        $products->category_name = $request ->category_name;
 
         // 
         // /* Agregar imagen al producto */
@@ -97,6 +99,9 @@ class ProductController extends Controller
         $products->descripcion_producto = $request ->descripcion_producto;
         $products->precio_producto = $request ->precio_producto;
         $products->establishment_id = $request ->establishment_id;
+        $products->category_id = $request ->category_id;
+        $products->establishment_name = $request ->establishment_name;
+        $products->category_name = $request ->category_name;
         // $products->category_id = $request ->category_id;
 
          /* Agregar imagenes al producto */

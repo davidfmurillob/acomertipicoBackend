@@ -23,9 +23,13 @@ return new class extends Migration
             //establecimientos
             $table->unsignedBigInteger('establishment_id');
             $table->foreign('establishment_id')->references('id')->on('establishments')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('establishment_name', 60);
+
             //categoria
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('category_name', 60);
+
             $table->timestamps();
         });
     }
