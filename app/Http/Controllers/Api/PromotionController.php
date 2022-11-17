@@ -23,26 +23,20 @@ class PromotionController extends Controller
     
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(),[
-            'name' => 'required',
-        ]);
-
-        if (!$validator->fails()) {
             $add = new Promotion();
             $add->name = $request->name;
             $add->description = $request ->description;
-            $file = $request->file('image')->store('public/promotion');
+            $file = $request->file('image')->store('public/Promociones');
             $add->image = $file;
             $add->ends = $request ->ends;
             $add->save();
 
             return response()->json([
+                'status' => 200,
                 'message' =>  'oK',
                 'info' =>  'Nuevo Registro!!',
                 'data'=> $add,
-            ], 201);
-        }
-
+            ], 200);
         // $add = new Promotion($request->all());
         // $file =$request->image->store("public/images");
 
@@ -56,7 +50,7 @@ class PromotionController extends Controller
     {
         $query =Promotion::find($id);
         return response()->json([
-            data => $query
+            'data' => $query
         ],202);
     }
 
@@ -66,12 +60,13 @@ class PromotionController extends Controller
         $record = Promotion::find($id);
         $record->name = $request->name;
         $record->description = $request ->description;
-        $record->image = $file;
         $file = $request->file('image')->store('public/promotion');
+        $record->image = $file;
         $record->ends = $request ->ends;
         $record->save();
         return response()->json([
-            'message' => 204,
+            'status' => 200,
+            'message' => 'Registro Actualizado!!',
             'info' => 'Actualizacion exitosa',
             'data' => $record
         ]);
@@ -84,7 +79,8 @@ class PromotionController extends Controller
         $record->delete();
 
         return response()->json([
-            'message' => 204,
+            'starus' => 200,
+            'message' => 'Todo esta ok',
             'info' => 'Registro Eliminado',
         ]);
     }

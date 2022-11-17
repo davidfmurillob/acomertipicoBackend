@@ -82,7 +82,10 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        
+        $product = Product::find($id);
+        return response()->json([
+            'data' => $product
+        ],202);
     }
 
     /**
@@ -106,16 +109,17 @@ class ProductController extends Controller
 
          /* Agregar imagenes al producto */
 
-        $files = $request->file('imagen_producto');
-        $fileName = " ";
-        foreach ($files as $file) {
-            $new_name = rand().'.'.$file->getClientOriginalName();
-            $file->move(storage_path('app/public/products'),$new_name);
-            $fileName = $fileName.$new_name.", ";
-        }
+        // $files = $request->file('imagen_producto');
+        // $fileName = " ";
+        // foreach ($files as $file) {
+        //     $new_name = rand().'.'.$file->getClientOriginalName();
+        //     $file->move(storage_path('app/public/products'),$new_name);
+        //     $fileName = $fileName.$new_name.", ";
+        // }
         // return response()->json($fileName);
 
-        $products->imagen_producto = $fileName;
+        $file = $request->file('imagen_producto')->store('public/Productos');
+        $products->imagen_producto = $file;
         $products->save();
 
         return response()->json([
