@@ -18,7 +18,7 @@ class CategoryController extends Controller
         $category = Category::all();
 
         return response()->json([
-
+            'status' => 200,
             'message' => 'success',
             'info' => 'Listado de Categorias',
             'category' => $category,
@@ -38,6 +38,7 @@ class CategoryController extends Controller
         $category->save();
 
         return response()->json([
+            'status' => 201,
             "message" => "Categoria creada con exito",
             "category" => $category,
         ], 201);
