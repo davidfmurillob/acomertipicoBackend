@@ -29,25 +29,18 @@ class CookwhithusController extends Controller
     
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(),[
-            'email' => 'required',
-            'telephone' => 'required',
-        ]);
-
-
-        if(!$validator->fails()) {
-            $client = new Cookwithus($request->all());
-            $client->save();
+        $client = new Cookwithus();
+        $client->email = $request->email;
+        $client->telephone = $request->telephone;
+        $client->id_product = $request->id_product;
+        $client->save();
 
             return response()->json([
+                'status' => 200,
                 'message' =>  'oK',
                 'info' =>  'El registro fue satisfactorio',
                 'Registro'=> $client,
-            ], 201);
-        }else{
-            return 400;
-        }
-        // https://dejuniorasenior.com/laravel-8-enlace-de-almacenamiento-storage-link-no-funciona-en-produccion/
+            ], 200);
     }
 
 
@@ -74,9 +67,14 @@ class CookwhithusController extends Controller
 
     public function destroy($id)
     {
-        $Cookwithus = Cookwithus::findorfail($id);
-        $Cookwithus->delete($id);
+        $record = Cookwithus::findorfail($id);
+        $record->delete($id);
 
-        return 204;
+        return response()->json([
+            'status' => 200,
+            'message' => 'Registro eliminado',
+            'info' => 'Accion exitosa',
+            'data' => $record
+        ]);
     }
 }
