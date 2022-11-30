@@ -35,10 +35,10 @@ class FoodRecipeController extends Controller
             $foodRecipe->name = $request->name;
             $foodRecipe->description = $request->description;
             // //link de receta
-            $foodRecipe->link =$request->link;
+            $foodRecipe->link = $request->link;
 
-            $file = $request->file('image')->store('public/Recetas');
-            $foodRecipe->image = $file;
+            // $file = $request->file('image')->store('public/Recetas');
+            $foodRecipe->image = $request->image;
 
 
             $foodRecipe->save();
