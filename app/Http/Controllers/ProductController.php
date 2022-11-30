@@ -46,7 +46,8 @@ class ProductController extends Controller
         $products->establishment_name = $request ->establishment_name;
         $products->category_name = $request ->category_name;
 
-        // 
+        $products->imagen_producto = $request->imagen_producto;
+
         // /* Agregar imagen al producto */
 
         // $files = $request->file('imagen_producto');
@@ -61,8 +62,8 @@ class ProductController extends Controller
         // $products->imagen_producto = $fileName;
         
         //imagen puesta por david
-        $file = $request->file('imagen_producto')->store('public/Productos');
-        $products->imagen_producto = $file;
+        // $file = $request->file('imagen_producto')->store('public/Productos');
+        // $products->imagen_producto = $file;
         //revisar el products save
         $products->save();
 
@@ -106,19 +107,18 @@ class ProductController extends Controller
         $products->establishment_name = $request ->establishment_name;
         $products->category_name = $request ->category_name;
 
-         /* Agregar imagenes al producto */
+        $products->imagen_producto = $request->imagen_producto;
 
-        // $files = $request->file('imagen_producto');
-        // $fileName = " ";
-        // foreach ($files as $file) {
-        //     $new_name = rand().'.'.$file->getClientOriginalName();
-        //     $file->move(storage_path('app/public/products'),$new_name);
-        //     $fileName = $fileName.$new_name.", ";
-        // }
-        // return response()->json($fileName);
 
-        $file = $request->file('imagen_producto')->store('public/Productos');
-        $products->imagen_producto = $file;
+
+
+       
+
+        // $file = $request->file('imagen_producto')->store('public/Productos');
+        // $products->imagen_producto = $file;
+
+
+
         $products->save();
 
         return response()->json([

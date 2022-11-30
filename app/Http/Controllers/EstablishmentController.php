@@ -39,10 +39,14 @@ class EstablishmentController extends Controller
         $establishment->direccion_establecimiento = $request -> direccion_establecimiento;
         $establishment->telefono_establecimiento = $request->telefono_establecimiento;
         $establishment->descripcion = $request->descripcion;
+
+
+        $establishment->imagen = $request->imagen;
+
         
-        $file = $request->file('imagen')->store('public/Establecimiento');
+        // $file = $request->file('imagen')->store('public/Establecimiento');
     
-        $establishment->imagen = $file;
+        // $establishment->imagen = $file;
 
         $establishment->ubicacion =$request->ubicacion;
         
@@ -95,8 +99,11 @@ class EstablishmentController extends Controller
         $establishment->direccion_establecimiento = $request -> direccion_establecimiento;
         $establishment->telefono_establecimiento = $request->telefono_establecimiento;
         $establishment->descripcion = $request->descripcion;
-        $file = $request->file('imagen')->store('public/Establecimiento');
-        $establishment->imagen = $file;
+
+        $establishment->imagen = $request->imagen;
+
+        // $file = $request->file('imagen')->store('public/Establecimiento');
+        // $establishment->imagen = $file;
 
         $establishment->save();
 
