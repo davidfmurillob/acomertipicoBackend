@@ -35,16 +35,9 @@ class FoodRecipeController extends Controller
             $foodRecipe = new FoodRecipe();
             $foodRecipe->name = $request->name;
             $foodRecipe->description = $request->description;
-            // //link de receta
             $foodRecipe->link =$request->link;
-
-            $file = $request->file('image')->store('public/Recetas');
-            $foodRecipe->image = $file;
-
-
+            $foodRecipe->image = $request->image;
             $foodRecipe->save();
-            // sirve de ves en cuando
-            // $file = $request->image->store('public/recipes');
 
             return response()->json([
                 'status' => 200,
@@ -69,13 +62,11 @@ class FoodRecipeController extends Controller
 
     public function update(Request $request, $id)
     {
-        $record = FoodRecipe::find0rFail($request->id);
+            $record = FoodRecipe::find($id);
             $record->name = $request->name;
             $record->description = $request->description;
             $record->link =$request->link;
-            $record->link =$request->link;
-            $file = $request->file('image')->store('public/Recetas');
-            $record->image = $file;
+            $record->image = $request->image;
             $record->save();
 
         return response()->json([

@@ -36,13 +36,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 //ruta establecimientos
-Route::apiResource('establishment', EstablishmentController::class);
+// Route::apiResource('establishment', EstablishmentController::class);
+Route::resource('establishment', EstablishmentController::class);
 //ruta productos
-Route::apiResource('products', ProductController::class);
+//Route::apiResource('products', ProductController::class);
+Route::resource('products', ProductController::class);
 //ruta categoria
 Route::apiResource('category', CategoryController::class);
 //ruta Recetas
-Route::apiResource('recipe', FoodRecipeController::class);
+// Route::apiResource('recipe', FoodRecipeController::class);
+Route::resource('recipe', FoodRecipeController::class);
 //ruta Cocina Con Nosotros
 Route::apiResource('cooking', CookwhithusController::class);
 //ruta Anuncio
@@ -65,3 +68,11 @@ Route::put('cart-updatequanty/{card_id}/{scope}', [OrderController::class, 'upda
 //Delete cartitem
 Route::delete('delete-cartitem/{cart_id}', [OrderController::class, 'deleteCartitem']);
 
+
+/** put recetas producto establecimiento **/
+
+// Route::post('recipe/{id}', [FoodRecipeController::class, 'update']);
+
+// Route::post('product/{id}', [ProductController::class, 'update']);
+
+// Route::post('establishment/{id}',[ EstablishmentController::class, 'update']);
