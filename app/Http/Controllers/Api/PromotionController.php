@@ -10,24 +10,25 @@ use Illuminate\Support\Facades\Validator;
 
 class PromotionController extends Controller
 {
-    
+
     public function index()
     {
         $data = Promotion::all();
         return response()->json([
+            'status' => 200,
             'sucess' => 'Listado Registros',
             'data' => $data
         ],200);
     }
 
-    
+
     public function store(Request $request)
     {
             $add = new Promotion();
             $add->name = $request->name;
             $add->description = $request ->description;
-            $file = $request->file('image')->store('public/Promociones');
-            $add->image = $file;
+            // $file = $request->file('image')->store('public/Promociones');
+            $add->image = $request->image;
             $add->ends = $request ->ends;
             $add->save();
 
@@ -45,7 +46,7 @@ class PromotionController extends Controller
 
     }
 
-    
+
     public function show($id)
     {
         $query =Promotion::find($id);
@@ -54,14 +55,13 @@ class PromotionController extends Controller
         ],202);
     }
 
-    
+
     public function update(Request $request, $id)
     {
         $record = Promotion::find($id);
         $record->name = $request->name;
         $record->description = $request ->description;
-        $file = $request->file('image')->store('public/promotion');
-        $record->image = $file;
+        $record->image = $request->image;
         $record->ends = $request ->ends;
         $record->save();
         return response()->json([
@@ -72,10 +72,10 @@ class PromotionController extends Controller
         ]);
     }
 
-    
+
     public function destroy($id)
     {
-        $record = Promotion::findOrfail($id);
+        $record = Promotion::findOrFail($id);
         $record->delete();
 
         return response()->json([

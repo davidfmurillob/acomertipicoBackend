@@ -52,7 +52,11 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        $queryCategories = Category::find($id);
+        return response()->json([
+           'status' => 200,
+           'query' => $queryCategories,
+        ]);
     }
 
     /**

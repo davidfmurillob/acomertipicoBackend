@@ -21,7 +21,7 @@ class EstablishmentController extends Controller
         return response()->json([
 
             'message' => 'success',
-            'info' => 'Listado de esstablecimientos',
+            'info' => 'Listado de Establecimientos',
             'establishment' => $establishment,
         ], 200);
     }
@@ -43,18 +43,18 @@ class EstablishmentController extends Controller
         $establishment->imagen = $request->imagen;
 
         $establishment->ubicacion =$request->ubicacion;
-        
+
         $establishment->save();
 
         return response()->json([
-            //linea MUY NECESARIA en todos los crud agregada por david 
+            //linea MUY NECESARIA en todos los crud agregada por david
             'status' => 200,
             'message' => 'Registro exitoso',
             'info' => 'todo bien hasta el momento',
             'establishment' => $establishment,
         ], 200);
 
-        
+
     }
 
     /**
@@ -72,7 +72,7 @@ class EstablishmentController extends Controller
 
         return response()->json([
 
-            'product' => $product, 
+            'product' => $product,
             'establishment' => $establishment,
         ], 200);
 
@@ -87,7 +87,7 @@ class EstablishmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-       
+
         $establishment = Establishment::find($id);
         $establishment->nombre_establecimiento = $request ->nombre_establecimiento;
         $establishment->direccion_establecimiento = $request -> direccion_establecimiento;

@@ -25,9 +25,9 @@ use App\Http\Controllers\Api\PromotionController;
 Route::middleware(['auth:sanctum', 'isAPIAdmin'])->group(function () {
     Route::get('/checkingAuthenticated', function () {
         return response()->json([
-            "message" => "You are in", 
+            "message" => "You are in",
             "status" => "200"
-        ], 200); 
+        ], 200);
     });
 });
 ////////////////////////////////////////////////////////////////////////
@@ -37,28 +37,28 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 //ruta establecimientos
 // Route::apiResource('establishment', EstablishmentController::class);
-Route::resource('establishment', EstablishmentController::class);
+//Route::resource('establishment', EstablishmentController::class);
 //ruta productos
 //Route::apiResource('products', ProductController::class);
-Route::resource('products', ProductController::class);
+//Route::resource('products', ProductController::class);
 //ruta categoria
-Route::apiResource('category', CategoryController::class);
+//Route::apiResource('category', CategoryController::class);
 //ruta Recetas
 // Route::apiResource('recipe', FoodRecipeController::class);
-Route::resource('recipe', FoodRecipeController::class);
+//Route::resource('recipe', FoodRecipeController::class);
 //ruta Cocina Con Nosotros
 Route::apiResource('cooking', CookwhithusController::class);
 //ruta Anuncio
-Route::apiResource('promotion', PromotionController::class);
+//Route::apiResource('promotion', PromotionController::class);
 
-/**************************************Autenticacion**************************************/ 
+/**************************************Autenticacion**************************************/
 //registro
 Route::post('auth/register', [AuthController::class, 'register'])->name('auth/register');
 //login
 Route::post('auth/login', [AuthController::class, 'login'])->name('auth/login');
 //logout
 Route::post('auth/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
-/************************************Carrito de compras***********************************/ 
+/************************************Carrito de compras***********************************/
 //Agregar productos al carrito
 Route::post('add-to-cart', [OrderController::class, 'addtocart']);
 //
@@ -68,11 +68,44 @@ Route::put('cart-updatequanty/{card_id}/{scope}', [OrderController::class, 'upda
 //Delete cartitem
 Route::delete('delete-cartitem/{cart_id}', [OrderController::class, 'deleteCartitem']);
 
+/*************************** API **************************/
+Route::controller(ProductController::class)->group(function(){
+    Route::get('products','index');
+    Route::post('product','store');
+    Route::put('product/{id}','update');
+    Route::get('products/{id}','show');
+    Route::delete('delete-product','destroy');
+});
 
-/** put recetas producto establecimiento **/
+Route::controller(FoodRecipeController::class)->group(function(){
+        Route::get('recipes','index');
+        Route::post('recipe','store');
+        Route::put('recipe/{id}','update');
+        Route::get('recipes/{id}','show');
+        Route::delete('delete-recipe/{id}', 'destroy');
+});
 
-// Route::post('recipe/{id}', [FoodRecipeController::class, 'update']);
+Route::controller(EstablishmentController::class)->group(function(){
+        Route::get('establishments','index');
+        Route::post('establishment','store');
+        Route::put('establishment/{id}','update');
+        Route::get('establishments/{id}','show');/*********Esta ruta es una consulta a DB**********/
+        Route::delete('delete-establishment/{id}', 'destroy');
+});
 
-// Route::post('product/{id}', [ProductController::class, 'update']);
+Route::controller(CategoryController::class)->group(function(){
+        Route::get('categories','index');
+        Route::post('category','store');
+        Route::put('category/{id}','update');
+        Route::get('categories/{id}','show');
+        Route::delete('delete-category/{id}', 'destroy');
+});
 
-// Route::post('establishment/{id}',[ EstablishmentController::class, 'update']);
+Route::controller(PromotionController::class)->group(function(){
+    Route::get('promotions','index');
+    Route::post('promotion','store');
+    Route::put('promotion/{id}','update');
+    Route::get('promotions/{id}','show');
+    Route::delete('delete-promotion/{id}', 'destroy');
+});
+
