@@ -57,8 +57,7 @@ class ProductController extends Controller
         // $products->imagen_producto = $fileName;
         //imagen puesta por david
         // $file = $request->file('imagen_producto')->store('public/Productos');
-        $products->imagen_producto = $imagen_producto;
-        //revisar el products save
+        $products->imagen_producto = $request->imagen_producto;
         $products->save();
 
         return response()->json([
