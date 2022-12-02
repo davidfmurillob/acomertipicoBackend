@@ -113,11 +113,11 @@ class ProductController extends Controller
         $products->save();
 
         return response()->json([
-            'status' => 200,
-            'message' => 'Success',
-            'info' => 'Registro Exitoso',
+            'status' => 201,
+            'message' => 'Producto actualizado',
+            'info' => 'Procedimiento exitoso',
             'products' => $products,
-        ], 200);
+        ], 201);
     }
 
     /**

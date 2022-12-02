@@ -102,8 +102,8 @@ class EstablishmentController extends Controller
         $establishment->save();
 
         return response()->json([
-
-            'message' => 'Actualizacion exitoso',
+            'status' => 201,
+            'message' => 'Actualizacion exitosa',
             'info' => 'Registro actualizado',
             'establishment' => $establishment,
         ], 201);

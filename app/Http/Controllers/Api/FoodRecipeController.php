@@ -70,8 +70,8 @@ class FoodRecipeController extends Controller
             $record->save();
 
         return response()->json([
-            'status' => 200,
-            'sucess' => 'Acualizado Satisfactorio',
+            'status' => 201,
+            'message' => 'Receta Actualizada',
             'data' => $record
         ]);
     }
@@ -84,7 +84,7 @@ class FoodRecipeController extends Controller
 
         return response()->json([
             'status' => 200,
-            'sucess' => 'Accion Exitosa',
+            'message' => 'Accion Exitosa',
             'data' =>  204
         ]);
     }
