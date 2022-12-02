@@ -74,7 +74,7 @@ Route::controller(ProductController::class)->group(function(){
     Route::post('product','store');
     Route::put('product/{id}','update');
     Route::get('products/{id}','show');
-    Route::delete('delete-product','destroy');
+    Route::delete('delete-product/{id}','destroy');
 });
 
 Route::controller(FoodRecipeController::class)->group(function(){

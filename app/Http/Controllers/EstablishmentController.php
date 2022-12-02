@@ -50,7 +50,7 @@ class EstablishmentController extends Controller
             //linea MUY NECESARIA en todos los crud agregada por david
             'status' => 200,
             'message' => 'Registro exitoso',
-            'info' => 'todo bien hasta el momento',
+            'info' => 'Establecimiento creado',
             'establishment' => $establishment,
         ], 200);
 
@@ -94,13 +94,17 @@ class EstablishmentController extends Controller
         $establishment->telefono_establecimiento = $request->telefono_establecimiento;
         $establishment->descripcion = $request->descripcion;
         $establishment->imagen = $request->imagen;
+        //Faltaba ubicacion, agregado por david 
+
+        $establishment->ubicacion =$request->ubicacion;
+
 
         $establishment->save();
 
         return response()->json([
 
             'message' => 'Actualizacion exitoso',
-            'info' => 'todo bien hasta el momento',
+            'info' => 'Registro actualizado',
             'establishment' => $establishment,
         ], 201);
 

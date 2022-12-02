@@ -73,8 +73,8 @@ class CategoryController extends Controller
         $category->save();
 
         return response()->json([
-            'status' => 200,
-            "message" => "Categoria creada con exito",
+            'status' => 201,
+            "message" => "Categoria actualizada con exito",
             "category" => $category,
         ], 201);
     }
