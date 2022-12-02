@@ -63,17 +63,21 @@ class EstablishmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Establishment $establishment)
+    public function show(Establishment $establishment, $id)
     {
+        $establishment = Establishment::find($id);
+
         $product = Product::select('nombre_producto', 'descripcion_producto', 'precio_producto')
         ->join('establishments', 'products.establishment_id', '=' , 'establishments.id')
         ->where('establishments.id', $establishment->id)
         ->get();
 
-        return response()->json([
+       // $product = Product::find($id);
 
-            'product' => $product,
+        return response()->json([
+            'status' => 200,
             'establishment' => $establishment,
+            'product' => $product,
         ], 200);
 
     }
