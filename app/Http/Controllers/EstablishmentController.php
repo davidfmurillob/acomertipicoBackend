@@ -67,7 +67,7 @@ class EstablishmentController extends Controller
     {
         $establishment = Establishment::find($id);
 
-        $product = Product::select('nombre_producto', 'descripcion_producto', 'precio_producto')
+        $product = Product::select('products.id', 'nombre_producto', 'descripcion_producto', 'precio_producto', 'imagen_producto')
         ->join('establishments', 'products.establishment_id', '=' , 'establishments.id')
         ->where('establishments.id', $establishment->id)
         ->get();
