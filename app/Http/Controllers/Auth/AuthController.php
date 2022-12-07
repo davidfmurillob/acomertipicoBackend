@@ -42,10 +42,11 @@ class AuthController extends Controller
             ],200 );
         }
 
-       $user = User::where($request->rol_id)->get();
+       //$user = User::where('rol_id', '=' , 1)->get();
        
 
         $userToken = Token::where('name', $request->email)->first();
+        $user = User::where('email', $request->email)->first();
         if($userToken){
             $userToken->delete();
         }
@@ -55,7 +56,7 @@ class AuthController extends Controller
             'status'=>200,
             "success" => true,
             "message" => 'Inicio de sesión exitoso',
-            "rol_id" => $user,
+            "rol_id" => $user->rol_id,
             "token" => $request->user()->createToken($request->email)->plainTextToken,
         ], 200);
     }

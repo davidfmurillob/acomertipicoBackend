@@ -19,6 +19,9 @@ return new class extends Migration
             $table->date('fecha');
             $table->time('hora');
             $table->string('direccion');
+            //
+            $table->unsignedBigInteger('establishment_id');
+            $table->foreign('establishment_id')->references('id')->on('establishments')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
