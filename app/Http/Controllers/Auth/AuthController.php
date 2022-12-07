@@ -37,11 +37,13 @@ class AuthController extends Controller
 
         if(!Auth::attempt($request->only('email', 'password'))){
             return response()->json([
-                //Reparar esta sección
                 "message" => "Datos incorrectos",
                 "success" => false
             ],200 );
         }
+
+       $user = User::where($request->rol_id)->get();
+       
 
         $userToken = Token::where('name', $request->email)->first();
         if($userToken){
@@ -53,6 +55,7 @@ class AuthController extends Controller
             'status'=>200,
             "success" => true,
             "message" => 'Inicio de sesión exitoso',
+            "rol_id" => $user,
             "token" => $request->user()->createToken($request->email)->plainTextToken,
         ], 200);
     }
