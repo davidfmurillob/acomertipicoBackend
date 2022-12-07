@@ -10,6 +10,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Api\FoodRecipeController;
 use App\Http\Controllers\Api\PromotionController;
+use App\Http\Controllers\EventController;
 
 /*
 |--------------------------------------------------------------------------
@@ -107,5 +108,13 @@ Route::controller(PromotionController::class)->group(function(){
     Route::put('promotion/{id}','update');
     Route::get('promotions/{id}','show');
     Route::delete('delete-promotion/{id}', 'destroy');
+});
+
+Route::controller(EventController::class)->group(function(){
+    Route::get('events','index');
+    Route::post('event','store');
+    Route::put('event/{id}','update');
+    Route::get('events/{id}','show'); //vacia xd
+    Route::delete('delete-event/{id}', 'destroy');
 });
 
