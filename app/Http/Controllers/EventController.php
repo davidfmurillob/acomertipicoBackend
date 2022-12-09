@@ -37,6 +37,8 @@ class EventController extends Controller
         $event->hora = $request ->hora;
         $event->direccion = $request ->direccion;
         $event->establishment_id = $request ->establishment_id;
+        $event->establishment_name = $request ->establishment_name;
+
 
         $event->save();
 
@@ -73,6 +75,7 @@ class EventController extends Controller
         $event->hora = $request ->hora;
         $event->direccion = $request ->direccion;
         $event->establishment_id = $request ->establishment_id;
+        $event->establishment_name = $request ->establishment_name;
 
         $event->save();
 
