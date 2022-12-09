@@ -11,7 +11,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Api\FoodRecipeController;
 use App\Http\Controllers\Api\PromotionController;
 use App\Http\Controllers\EventController;
-
+use App\Http\Controllers\AttendEventController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -118,3 +118,10 @@ Route::controller(EventController::class)->group(function(){
     Route::delete('delete-event/{id}', 'destroy');
 });
 
+/* asistencia eventos */
+
+Route::post('events-user', [AttendEventController::class, 'AsistirEvento']);
+
+/****** Falta Consula
+Route::get('events-user/{id}',[AttendEventController::class, 'ListarAsistencia']);
+*/
