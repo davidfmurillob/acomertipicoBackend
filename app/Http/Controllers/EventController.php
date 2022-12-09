@@ -37,6 +37,9 @@ class EventController extends Controller
         $event->hora = $request ->hora;
         $event->direccion = $request ->direccion;
 
+        //falto llave foranea establishment
+        $event->establishment_id = $request ->establishment_id;
+
         $event->save();
 
         return response()->json([
@@ -71,6 +74,7 @@ class EventController extends Controller
         $event->fecha = $request ->fecha;
         $event->hora = $request ->hora;
         $event->direccion = $request ->direccion;
+        $event->establishment_id = $request ->establishment_id;
 
         $event->save();
 
