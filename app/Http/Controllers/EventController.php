@@ -38,10 +38,6 @@ class EventController extends Controller
         $event->direccion = $request ->direccion;
         $event->establishment_id = $request ->establishment_id;
 
-
-        //falto llave foranea establishment
-        $event->establishment_id = $request ->establishment_id;
-
         $event->save();
 
         return response()->json([
