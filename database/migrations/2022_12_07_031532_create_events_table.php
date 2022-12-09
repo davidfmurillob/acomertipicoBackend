@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->date('fecha');
-            $table->time('hora');
+            $table->string('fecha');
+            $table->string('hora');
             $table->string('direccion');
             //
             $table->unsignedBigInteger('establishment_id');

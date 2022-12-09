@@ -36,6 +36,8 @@ class EventController extends Controller
         $event->fecha = $request ->fecha;
         $event->hora = $request ->hora;
         $event->direccion = $request ->direccion;
+        $event->establishment_id = $request ->establishment_id;
+
 
         //falto llave foranea establishment
         $event->establishment_id = $request ->establishment_id;
