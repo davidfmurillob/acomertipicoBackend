@@ -14,6 +14,6 @@ class EventAndUser extends Model
     protected $fillable = [
         'events_id',
         'users_id',
-        'asistencia'
+
     ];
 }

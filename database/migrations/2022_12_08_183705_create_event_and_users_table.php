@@ -21,7 +21,7 @@ return new class extends Migration
             /* foranea Usuarios */
             $table->unsignedBigInteger('users_id');
             $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->enum('asistencia',['true','false']);
+
             $table->timestamps();
         });
     }

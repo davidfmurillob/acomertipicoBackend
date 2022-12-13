@@ -12,7 +12,6 @@ class AttendEventController extends Controller
     public function AsistirEvento(Request $request){
 
         $record = new EventAndUser();
-        $record->asistencia = $request ->asistencia;
         $record->users_id = $request ->users_id;
         $record->events_id = $request ->events_id;
 
@@ -52,7 +51,7 @@ class AttendEventController extends Controller
          return response()->json([
             'status' => 200,
             'info' => "Eliminado correctamente"
-            
+
         ]);
 
     }

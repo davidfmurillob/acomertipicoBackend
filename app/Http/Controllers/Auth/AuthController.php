@@ -43,7 +43,7 @@ class AuthController extends Controller
         }
 
        //$user = User::where('rol_id', '=' , 1)->get();
-       
+
 
         $userToken = Token::where('name', $request->email)->first();
         $user = User::where('email', $request->email)->first();
@@ -51,7 +51,8 @@ class AuthController extends Controller
             $userToken->delete();
         }
 
-        return response()->json([   
+        return response()->json([
+            'id' => $user->id,
             'name' => $request->name,
             'status'=>200,
             "success" => true,
