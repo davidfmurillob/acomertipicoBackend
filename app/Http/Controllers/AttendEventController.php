@@ -42,4 +42,17 @@ class AttendEventController extends Controller
             'event' => $event
         ]);
     }
+
+    public function destroy($id){
+
+        $event = EventAndUser::findOrfail($id);
+        $event->delete();
+
+         return response()->json([
+            'status' => 200,
+            'info' => "Eliminado correctamente"
+            
+        ]);
+
+    }
 }
