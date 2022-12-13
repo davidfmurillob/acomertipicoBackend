@@ -16,6 +16,7 @@ class AttendEventController extends Controller
         $record->users_id = $request ->users_id;
         $record->events_id = $request ->events_id;
 
+
         $record->save();
 
         return response()->json([
@@ -31,9 +32,9 @@ class AttendEventController extends Controller
         $event = Event::find($id);
         $user= User::all();
 
-        $attend = EventAndUser::select('asistencia','users_id')
-            ->join('users', 'users.id','=','users.users_id')
-            ->join('events', 'events.id','=','events.events_id')
+        $attend = EventAndUser::select('asistencia','users_id','users.email')
+            ->join('users', 'users.id','=','event_and_users.users_id')
+            ->join('events', 'events.id','=','event_and_users.events_id')
             ->where('events.id',$event->id)->get();
 
         return response()->json([

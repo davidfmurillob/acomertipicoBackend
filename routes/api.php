@@ -124,6 +124,4 @@ Route::post('events-user', [AttendEventController::class, 'AsistirEvento']);
 Route::delete('delete-event-user/{id}', [AttendEventController::class], 'destroy');
 
 
-/****** Falta Consula
 Route::get('events-user/{id}',[AttendEventController::class, 'ListarAsistencia']);
-*/
