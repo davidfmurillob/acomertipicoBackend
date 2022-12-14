@@ -28,13 +28,21 @@ class AttendEventController extends Controller
 
     public function ListarAsistencia(Request $request, $id){
 
+        /***
+         * Consulta en SQL
+         * SELECT * FROM event_and_users 
+         * INNER JOIN events ON events_id = events.id 
+         * INNER JOIN users ON users_id = users.id 
+         * WHERE events_id = 4
+         */
+
         $event = Event::find($id);
         $user= User::all();
 
-        $attend = EventAndUser::select('asistencia','users_id','users.email')
+        $attend = EventAndUser::select('users_id','users.email', 'users.name', 'users.email','events.nombre','event_and_users.created_at','event_and_users.updated_at')
             ->join('users', 'users.id','=','event_and_users.users_id')
             ->join('events', 'events.id','=','event_and_users.events_id')
-            ->where('events.id',$event->id)->get();
+            ->where('events_id',$event->id)->get();
 
         return response()->json([
             'status' => 200,
